@@ -21,13 +21,13 @@ Welcome to the Employee Management System, a Node.js and Express application wit
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Aftab0012/Employee_Management_System.git
+   git clone https://github.com/Aftab0012/nodejs_mysql_crud.git
    ```
 
 2. Change to the project directory:
 
    ```bash
-   cd Employee_Management_System
+   cd nodejs_mysql_crud
    ```
 
 3. Install dependencies:
@@ -45,11 +45,11 @@ Welcome to the Employee Management System, a Node.js and Express application wit
 5. Add a .env file with the following content to run the server:
 
    ```bash
-   DB_HOST=localhost
-   DB_PORT=3306
-   DB_USER=root
-   DB_PASSWORD=your_mysql_password
-   DB_DATABASE=employee_db
+   HOST=localhost
+   PORT=3306
+   USER=root
+   PASSWORD=your_mysql_password
+   DATABASE=employee_db
    ```
 
 ## API Reference

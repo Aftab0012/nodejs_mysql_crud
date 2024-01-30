@@ -1,45 +1,49 @@
 const db = require('../db.js');
 
 module.exports.getAllEmployees = async () => {
-  const [records] = await db
-    .query('SELECT * FROM employees')
-    .catch((err) => console.log(err));
-  return records;
+  try {
+    const [records] = await db.query('SELECT * FROM employees');
+    return records;
+  } catch (error) {
+    console.error('Error in getAllEmployees:', error);
+    throw error;
+  }
 };
 
 module.exports.getEmployeeById = async (id) => {
-  const [[record]] = await db
-    .query('SELECT * FROM employees WHERE id = ?', [id])
-    .catch((err) => console.log(err));
-  return record;
+  try {
+    const [[record]] = await db.query('SELECT * FROM employees WHERE id = ?', [
+      id,
+    ]);
+    return record;
+  } catch (error) {
+    console.error('Error in getEmployeeById:', error);
+    throw error;
+  }
 };
 
 module.exports.deleteEmployeeById = async (id) => {
-  const [{ affectedRows }] = await db
-    .query('DELETE FROM employees WHERE id = ?', [id])
-    .catch((err) => console.log(err));
-  return affectedRows;
+  try {
+    const [{ affectedRows }] = await db.query(
+      'DELETE FROM employees WHERE id = ?',
+      [id]
+    );
+    return affectedRows;
+  } catch (error) {
+    console.error('Error in deleteEmployeeById:', error);
+    throw error;
+  }
 };
 
 module.exports.addOrUpdateEmployee = async (obj, id = 0) => {
-  const userAlreadyExists = await doesUserExist(obj.name);
-  if (userAlreadyExists) {
-    return 'User already exists!';
+  try {
+    const [[[{ affectedRows }]]] = await db.query(
+      'CALL usp_employee_add_or_edit(?,?,?,?)',
+      [id, obj.name, obj.employee_code, obj.salary]
+    );
+    return affectedRows;
+  } catch (error) {
+    console.error('Error in addOrUpdateEmployee:', error);
+    throw error;
   }
-  const [[[{ affectedRows }]]] = await db
-    .query('CALL usp_employee_add_or_edit(?,?,?,?)', [
-      id,
-      obj.name,
-      obj.employee_code,
-      obj.salary,
-    ])
-    .catch((err) => console.log(err));
-  return affectedRows;
-};
-
-const doesUserExist = async (name) => {
-  const [rows] = await db.query('SELECT * FROM employees WHERE name = ?', [
-    name,
-  ]);
-  return rows.length > 0;
 };
