@@ -1,19 +1,15 @@
+require('dotenv').config();
+
 const bodyParser = require('body-parser');
 const express = require('express');
 const db = require('./db.js');
 const app = express();
 const employeeRoute = require('./routes/employee.routes.js');
-require('express-async-errors');
 
 app.use(bodyParser.json());
 app.use(express.json());
 
 app.use('/api/employees', employeeRoute);
-
-app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(err.status || 500).send('Something went wrong');
-});
 
 db.query('SELECT 1')
   .then(() => {
