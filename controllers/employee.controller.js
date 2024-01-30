@@ -41,10 +41,15 @@ const deleteEmployeeById = async (req, res) => {
 
 const addEmployee = async (req, res) => {
   try {
-    await service.addOrUpdateEmployee(req.body);
-    res.status(201).json({ message: 'Employee added successfully' });
+    const result = await service.addOrUpdateEmployee(req.body);
+    if (result === 'User already exists!') {
+      return res.status(400).json({ message: 'User already exists!' });
+    } else {
+      return res.status(201).json({ message: 'Employee added successfully' });
+    }
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 };
 

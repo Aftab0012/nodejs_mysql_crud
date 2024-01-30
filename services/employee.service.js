@@ -22,6 +22,10 @@ module.exports.deleteEmployeeById = async (id) => {
 };
 
 module.exports.addOrUpdateEmployee = async (obj, id = 0) => {
+  const userAlreadyExists = await doesUserExist(obj.name);
+  if (userAlreadyExists) {
+    return 'User already exists!';
+  }
   const [[[{ affectedRows }]]] = await db
     .query('CALL usp_employee_add_or_edit(?,?,?,?)', [
       id,
@@ -31,4 +35,11 @@ module.exports.addOrUpdateEmployee = async (obj, id = 0) => {
     ])
     .catch((err) => console.log(err));
   return affectedRows;
+};
+
+const doesUserExist = async (name) => {
+  const [rows] = await db.query('SELECT * FROM employees WHERE name = ?', [
+    name,
+  ]);
+  return rows.length > 0;
 };
