@@ -7,6 +7,7 @@ const mysqlpool = mysql.createPool({
   user: process.env.USER,
   password: process.env.PASSWORD,
   database: process.env.DATABASE,
+  charset: 'utf8mb4',
 });
 
 module.exports = mysqlpool;

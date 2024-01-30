@@ -6,17 +6,22 @@
   "scripts": {
     "start": "nodemon index.js",
     "db": "nodemon db.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cross-env NODE_ENV=test jest --testTimeout=5000"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
     "mysql2": "^3.9.1",
     "nodemon": "^3.0.3"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
   }
 }
