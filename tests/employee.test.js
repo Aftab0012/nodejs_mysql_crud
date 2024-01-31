@@ -126,8 +126,6 @@ describe('PUT /api/employees/:id', () => {
   });
 });
 
-//  Test cases will run on first attempt (Successfully) after clonning repo,
-//  after that follow below NOTE.
 
 // NOTE/Attention: After each successful execution of the test cases,
 // it is essential to update the IDs of the test cases.
