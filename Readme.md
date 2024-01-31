@@ -54,15 +54,15 @@ Welcome to the Employee Management System, a Node.js and Express application wit
 
 6. Please make sure you have MySQL and a visual dashBoard like MySQL workbench installed so u can connect to DB seamlessly and see the data
 
-Below are the Links to download the tools :-
+   Below are the Links to download the tools :-
 
-MySQL community server
+   MySQL community server
 
-- <https://dev.mysql.com/downloads/file/?id=526084>
+   - <https://dev.mysql.com/downloads/file/?id=526084>
 
-MySQL Workbench
+   MySQL Workbench
 
-- <https://dev.mysql.com/downloads/file/?id=525959>
+   - <https://dev.mysql.com/downloads/file/?id=525959>
 
 ## API Reference
 
