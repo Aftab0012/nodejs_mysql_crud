@@ -1,6 +1,7 @@
 const request = require('supertest');
 const app = require('../index');
 const mysql = require('mysql2/promise');
+const { run } = require('jest');
 require('dotenv').config();
 
 let connection;
@@ -30,7 +31,7 @@ describe('GET /api/employees', () => {
 
 describe('GET /api/employees/:id', () => {
   it('should return employee by Id', async () => {
-    const employeeId = 23;
+    const employeeId = 39;
     const res = await request(app).get(`/api/employees/${employeeId}`);
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty('employee');
@@ -39,7 +40,7 @@ describe('GET /api/employees/:id', () => {
   });
 
   it('should return 404 if employee with ID is not found', async () => {
-    const nonExistentEmployeeId = 999;
+    const nonExistentEmployeeId = 999; // Don't change
     const res = await request(app).get(
       `/api/employees/${nonExistentEmployeeId}`
     );
@@ -49,14 +50,15 @@ describe('GET /api/employees/:id', () => {
 
 describe('DELETE /api/employees/:id', () => {
   it('should delete an employee record by Id', async () => {
-    const employeeId = 23;
+    const employeeId = 40;
     const res = await request(app).delete(`/api/employees/${employeeId}`);
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty('message', 'Deleted Successfully');
   });
 
+  // keep the (id) here as it is
   it('should return 404 if employee with ID is not found', async () => {
-    const nonExistentEmployeeId = 999;
+    const nonExistentEmployeeId = 999; // Don't change
     const res = await request(app).get(
       `/api/employees/${nonExistentEmployeeId}`
     );
@@ -67,8 +69,8 @@ describe('DELETE /api/employees/:id', () => {
 describe('POST /api/employees/', () => {
   it('should add an employee record', async () => {
     const employeeData = {
-      name: 'sample changed data',
-      employee_code: 'EMP0153',
+      name: 'Sample test case',
+      employee_code: 'EMP01709', // change after every test case
       salary: 50000,
     };
 
@@ -80,8 +82,8 @@ describe('POST /api/employees/', () => {
 
   it('should return 409 if employee with the same employee_code already exists', async () => {
     const existingEmployeeData = {
-      name: 'John Doe',
-      employee_code: 'EMP0123',
+      name: 'Sample test case',
+      employee_code: 'EMP01709',
       salary: 50000,
     };
 
@@ -96,11 +98,11 @@ describe('POST /api/employees/', () => {
 describe('PUT /api/employees/:id', () => {
   it('should update an employee record', async () => {
     const employeeData = {
-      name: 'sample data',
+      name: 'Name got updated',
       employee_code: 'EMP0153',
       salary: 50000,
     };
-    const employeeId = 21;
+    const employeeId = 42;
     const res = await request(app)
       .put(`/api/employees/${employeeId}`)
       .send(employeeData);
@@ -112,10 +114,10 @@ describe('PUT /api/employees/:id', () => {
   it('should return 404 if employee with the given Id not found', async () => {
     const EmployeeData = {
       name: 'some random name',
-      employee_code: 'EMP0128',
+      employee_code: 'EMP0120',
       salary: 50000,
     };
-    const employeeId = 21898;
+    const employeeId = 21898; // Don't change
     const res = await request(app)
       .put(`/api/employees/${employeeId}`)
       .send(EmployeeData);
@@ -123,3 +125,14 @@ describe('PUT /api/employees/:id', () => {
     expect(res.statusCode).toBe(404);
   });
 });
+
+//  Test cases will run on first attempt (Successfully) after clonning repo,
+//  after that follow below NOTE.
+
+// NOTE/Attention: After each successful execution of the test cases,
+// it is essential to update the IDs of the test cases.
+// Specifically, ensure that the IDs for the,
+// "Get Employee by ID," "Delete Employee by ID," and "Update Employee by ID"
+// test cases are meticulously rewritten in ascending order.
+// This practice guarantees the seamless functioning of the test suite
+// during subsequent runs.
