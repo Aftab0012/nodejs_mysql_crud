@@ -64,6 +64,43 @@ Welcome to the Employee Management System, a Node.js and Express application wit
 
    - <https://dev.mysql.com/downloads/file/?id=525959>
 
+## Database setup
+
+## Prerequisites
+- MySQL Server installed on your system.
+
+## Steps to Set Up Employee Database
+
+### 1. Create Database Schema
+named 'employee_db'.
+
+### 2. Create Employees Table
+Run the following SQL command to create the `employees` table within the `employee_db` schema:
+
+```sql
+-- create table
+CREATE TABLE `employee_db`.`employees` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `employee_code` varchar(45) DEFAULT NULL,
+  `salary` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
+
+## Table Structure
+
+| Field          | Type         | Null | Key | Default | Extra          |
+|----------------|--------------|------|-----|---------|----------------|
+| id             | int          | NO   | PRI | NULL    | auto_increment |
+| name           | varchar(45)  | YES  |     | NULL    |                |
+| employee_code  | varchar(45)  | YES  |     | NULL    |                |
+| salary         | int          | YES  |     | NULL    |                |
+
+### Notes
+- The `id` field is the primary key and will auto-increment with each new record.
+- You can customize the table structure based on your specific requirements.
+
 ## API Reference
 
 ### Employee API's
