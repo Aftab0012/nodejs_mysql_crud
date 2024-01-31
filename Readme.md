@@ -88,6 +88,34 @@ CREATE TABLE `employee_db`.`employees` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
+### Don't forget to add this below store procedure into your database stored-procedure option inside your database.
+
+```
+-- stored procedure - execute withing create procedure window
+CREATE PROCEDURE `employee_db`.`usp_employee_add_or_edit` (
+IN _id INT,
+IN _name VARCHAR(45),
+IN _employee_code VARCHAR(45),
+IN _salary INT
+
+)
+BEGIN
+	IF _id = 0 THEN
+		INSERT INTO employees(name,employee_code,salary)
+		VALUES (_name,_employee_code,_salary);
+        
+	ELSE
+		UPDATE employees
+        SET name = _name,
+		employee_code = _employee_code,
+        salary = _salary
+        WHERE id = _id;
+	END IF;
+    
+    SELECT ROW_COUNT() AS 'affectedRows';
+END
+```
+
 ## Table Structure
 
 | Field          | Type         | Null | Key | Default | Extra          |
