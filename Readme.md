@@ -88,7 +88,9 @@ CREATE TABLE `employee_db`.`employees` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
-### Don't forget to add this below store procedure into your database stored-procedure option inside your database.
+### 3. Add this below store procedure into your database stored-procedure option inside your database.
+
+**_purpose of this stored procedure is to either edit or add employees based on I'd value, if it's 0 then employees will be added to database else they will be edited._**
 
 ```
 -- stored procedure - execute withing create procedure window
