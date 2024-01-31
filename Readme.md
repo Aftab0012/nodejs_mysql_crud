@@ -159,7 +159,7 @@ Welcome to the Employee Management System, a Node.js and Express application wit
 
 ### Below is the database screenshot example:-
 
-![Alt text](image.png)
+![Alt text](image-3.png)
 
 # Employee Management API Tests
 
@@ -207,7 +207,6 @@ The tests cover various scenarios for the Employee Management API, including:
 Running the test suite should produce output similar to the following:
 
 ![Alt text](image-1.png)
-Certainly! Here's how you can make the message noticeable using a README.md format:
 
 # Important Notice
 
