@@ -20,49 +20,49 @@ Welcome to the Employee Management System, a Node.js and Express application wit
 
 1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/Aftab0012/nodejs_mysql_crud.git
-   ```
+```bash
+git clone https://github.com/Aftab0012/nodejs_mysql_crud.git
+```
 
 2. Change to the project directory:
 
-   ```bash
-   cd nodejs_mysql_crud
-   ```
+```bash
+cd nodejs_mysql_crud
+```
 
 3. Install dependencies:
 
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
 4. Start the server:
 
-   ```bash
-   npm start
-   ```
+```bash
+npm start
+```
 
 5. Add a .env file with the following content to run the server:
 
-   ```bash
-   HOST=localhost
-   PORT=3306
-   USER=root
-   PASSWORD=your_mysql_password
-   DATABASE=employee_db
-   ```
+```bash
+HOST=localhost
+PORT=3306
+USER=root
+PASSWORD=your_mysql_password
+DATABASE=employee_db
+```
 
 6. Please make sure you have MySQL and a visual dashBoard like MySQL workbench installed so u can connect to DB seamlessly and see the data
 
-   Below are the Links to download the tools :-
+Below are the Links to download the tools :-
 
-   MySQL community server
+MySQL community server
 
-   - <https://dev.mysql.com/downloads/file/?id=526084>
+- <https://dev.mysql.com/downloads/file/?id=526084>
 
-   MySQL Workbench
+MySQL Workbench
 
-   - <https://dev.mysql.com/downloads/file/?id=525959>
+- <https://dev.mysql.com/downloads/file/?id=525959>
 
 ## API Reference
 
