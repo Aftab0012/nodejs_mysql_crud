@@ -1,3 +1,17 @@
+// please add the (emoloyee_id) according 
+// to your database table I'd the current
+// written I'd are according to my db
+
+// NOTE/Attention: After each successful execution of the test cases,
+// it is essential to update the IDs of the test cases.
+// Specifically, ensure that the IDs for the,
+// "Get Employee by ID," "Delete Employee by ID," and "Update Employee by ID"
+// test cases are meticulously rewritten in ascending order.
+// This practice guarantees the seamless functioning of the test suite
+// during subsequent runs.
+
+
+
 const request = require('supertest');
 const app = require('../index');
 const mysql = require('mysql2/promise');
@@ -126,13 +140,4 @@ describe('PUT /api/employees/:id', () => {
   });
 });
 
-//  Test cases will run on first attempt (Successfully) after clonning repo,
-//  after that follow below NOTE.
 
-// NOTE/Attention: After each successful execution of the test cases,
-// it is essential to update the IDs of the test cases.
-// Specifically, ensure that the IDs for the,
-// "Get Employee by ID," "Delete Employee by ID," and "Update Employee by ID"
-// test cases are meticulously rewritten in ascending order.
-// This practice guarantees the seamless functioning of the test suite
-// during subsequent runs.

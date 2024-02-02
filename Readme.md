@@ -64,6 +64,73 @@ MySQL Workbench
 
 - <https://dev.mysql.com/downloads/file/?id=525959>
 
+## Database setup
+
+## Prerequisites
+- MySQL Server installed on your system.
+
+## Steps to Set Up Employee Database
+
+### 1. Create Database Schema
+named 'employee_db'.
+
+### 2. Create Employees Table
+Run the following SQL command to create the `employees` table within the `employee_db` schema:
+
+```sql
+-- create table
+CREATE TABLE `employee_db`.`employees` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `employee_code` varchar(45) DEFAULT NULL,
+  `salary` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
+
+### 3. Add this below store procedure into your database stored-procedure option inside your database.
+
+**_purpose of this stored procedure is to either edit or add employees based on I'd value, if it's 0 then employees will be added to database else they will be edited._**
+
+```
+-- stored procedure - execute withing create procedure window
+CREATE PROCEDURE `employee_db`.`usp_employee_add_or_edit` (
+IN _id INT,
+IN _name VARCHAR(45),
+IN _employee_code VARCHAR(45),
+IN _salary INT
+
+)
+BEGIN
+	IF _id = 0 THEN
+		INSERT INTO employees(name,employee_code,salary)
+		VALUES (_name,_employee_code,_salary);
+        
+	ELSE
+		UPDATE employees
+        SET name = _name,
+		employee_code = _employee_code,
+        salary = _salary
+        WHERE id = _id;
+	END IF;
+    
+    SELECT ROW_COUNT() AS 'affectedRows';
+END
+```
+
+## Table Structure
+
+| Field          | Type         | Null | Key | Default | Extra          |
+|----------------|--------------|------|-----|---------|----------------|
+| id             | int          | NO   | PRI | NULL    | auto_increment |
+| name           | varchar(45)  | YES  |     | NULL    |                |
+| employee_code  | varchar(45)  | YES  |     | NULL    |                |
+| salary         | int          | YES  |     | NULL    |                |
+
+### Notes
+- The `id` field is the primary key and will auto-increment with each new record.
+- You can customize the table structure based on your specific requirements.
+
 ## API Reference
 
 ### Employee API's
@@ -169,11 +236,11 @@ The API is designed to manage employee data, providing endpoints for retrieving,
 
 Before running the tests, ensure you have the following dependencies installed:
 
-- [Node.js](https://nodejs.org/) (version x.x.x)
-- [npm](https://www.npmjs.com/) (version x.x.x)
-- [Jest](https://jestjs.io/) (version x.x.x)
-- [Supertest](https://www.npmjs.com/package/supertest) (version x.x.x)
-- [mysql2](https://www.npmjs.com/package/mysql2) (version x.x.x)
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
+- [Jest](https://jestjs.io/) (version ^29.7.0)
+- [Supertest](https://www.npmjs.com/package/supertest) (version ^6.3.4)
+- [mysql2](https://www.npmjs.com/package/mysql2) (version ^3.9.1)
 
 Install the dependencies using the following command:
 
